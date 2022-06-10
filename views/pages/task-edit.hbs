@@ -1,0 +1,22 @@
+<div class="content container mx-auto px-3">
+  <div class="list">
+    <div class="list-header flex items-center justify-center text-center mx-auto py-5">
+      <span class="task-title uppercase ml-2 text-gray-500 font-medium">{{task.name}}</span>
+    </div>
+    <form method="post" action="/task/edit/{{task._id}}" class="list-wrap max-w-3xl mx-auto">
+      <div class="task bg-white p-2 md:p-4 shadow">
+        <h1 class="border-b-2 py-2 font-semibold">Công việc</h1>
+        <input type="text" name="name" class="w-full text-left px-5 py-2" value="{{task.name}}" />
+      </div>
+      <div class="task bg-white p-2 md:p-4 shadow">
+        <h1 class="border-b-2 py-2 font-semibold">Ghi chú</h1>
+        <textarea name="note" rows="5" class="w-full text-left p-5">{{task.note}}</textarea>
+      </div>
+      <div class="btn-submit mt-5">
+        <button type="submit" class="bg-white px-5 py-4 rounded shadow float-right">
+          Cập nhật
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

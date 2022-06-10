@@ -1,0 +1,78 @@
+{{! <div class="content flex flex-col justify-center items-center h-screen">
+  <div class="form h-full mt-16">
+    <h1 class="text-center py-5 text-3xl uppercase">Đăng ký</h1>
+    <form
+      action="/user/register"
+      method="post"
+      class="bg-white py-10 px-5 flex flex-col border-2 rounded"
+    > }}
+{{!-- {{>message}} --}}
+{{! <div class="form-control mb-5">
+        <label for="username">Tài khoản</label>
+        <input type="text" name="username" value="" minlength="3" class="w-full p-2 border-2" /> }}
+
+{{! </div>
+      <div class="form-control mb-5">
+        <label for="password">Mật khẩu</label>
+        <input type="password" name="password" class="w-full p-2 border-2" />
+        
+      </div>
+      <div class="form-control mb-5">
+        <label for="password">Xác nhận mật khẩu</label>
+        <input type="password" name="password2" class="w-full p-2 border-2" />
+      </div>
+      <button
+        type="submit"
+        class="inline-block p-3 w-2/5 mx-auto outline outline-1 mt-5 hover:outline-none hover:bg-teal-700 hover:text-white transition"
+      >
+        Đăng ký
+      </button>
+    </form>
+  </div>
+</div> }}
+
+
+
+
+<div class="app grid grid-cols-1 sm:grid-cols-2">
+  <div class="logo hidden sm:flex flex-col items-start justify-center h-screen pl-5 lg:pl-44">
+    <h1 class="logo text-5xl lg:text-7xl text-blue-700">
+      <span class="font-bold">S.</span>Task
+    </h1>
+    <p class="text-base lg:text-xl">
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi, ea?
+    </p>
+  </div>
+  <div class="form-register flex items-center justify-center h-screen">
+    <form action="/user/register" method="post" class="bg-white p-5 flex flex-col rounded-lg max-w-md sm:shadow-lg">
+      <h1 class="logo text-3xl mt-2 mb-5 hidden sm:flex">Đăng ký</h1>
+      <h1 class="logo text-3xl text-center text-blue-700 mt-2 mb-5 sm:hidden">
+        <span class="font-bold">S.</span>Task
+      </h1>
+      {{>message}}
+      <div class="form-control mb-5">
+        <label for="username">Tài khoản</label>
+        <input type="text" name="username" value="{{username}}" class="inline-block w-full p-2 border-2" />
+      </div>
+      <div class="form-control mb-5">
+        <label for="password">Mật khẩu</label>
+        <input type="password" name="password" class="inline-block w-full p-2 border-2" />
+      </div>
+      <div class="form-control mb-5">
+        <label for="password">Xác nhận mật khẩu</label>
+        <input type="password" name="password2" class="w-full p-2 border-2" />
+      </div>
+      <button type="submit" class="block p-3 mt-2 transition rounded-lg text-white bg-green-600 hover:bg-green-700">
+        Đăng ký
+      </button>
+      <div class="hr bg-gray-300 w-full my-8" style="height: 1px"></div>
+      <a href="/"
+        class="btn-signup inline-block w-2/5 mx-auto transition rounded-lg p-3 text-white text-center bg-blue-500 hover:bg-blue-700">
+        Đăng nhập
+      </a>
+    </form>
+  </div>
+</div>
+
+
+

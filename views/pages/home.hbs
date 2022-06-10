@@ -1,0 +1,152 @@
+{{#if userName}}
+<div class="content p-4 container mx-auto">
+  {{!-- <div class="pin-header flex items-center justify-center text-5xl">
+    <i class='bx bx-list-ol'></i>
+    <span class="uppercase ml-2 text-gray-500 font-medium">Kế hoach</span>
+  </div> --}}
+  {{#if lists}}
+
+
+  <div class="pin-wrap grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4">
+    {{#each lists }}
+    <a class="task bg-white p-2 md:p-4 hover:shadow-lg relative" href="/list/{{this._id}}">
+      <div class="header flex items-center mb-2">
+        <i class="bx bxs-flag-alt text-{{getFlag this.flag}}-600 text-xl"></i>
+        <div class="pin-title ml-2 uppercase">{{this.name}}</div>
+      </div>
+      {{#if this.tasks}}
+      <ul class="list text-sm">
+        {{#each this.tasks }}
+        <li class="flex items-center py-1 text-gray-500">
+          <i class="bx bx-{{#if this.status}}check{{else}}circle{{/if}} pr-4 cursor-default"></i>
+          <span class="cursor-default">{{this.name}}</span>
+        </li>
+        {{/each}}
+      </ul>
+      {{else}}
+      <div class="more pt-2 text-gray-400 ">Thêm công việc</div>
+      {{/if}}
+    </a>
+    {{/each}}
+    {{else}}
+    <div class="text-center">
+      <h1 class="mt-5 text-xl font-semibold">Danh sách trống</h1>
+      <img class="w-screen h-70vh" src="./images/nodata.svg" alt="">
+    </div>
+    {{/if}}
+
+  </div>
+</div>
+
+
+<button id="btn-add-list" data-tippy-content="Thêm danh sách"
+  class="tooltip fixed bottom-5 right-5 z-30 text-orange-500">
+  <img class="w-16 h-16" src="/images/btn-add.svg" alt="" />
+</button>
+
+<div class="add-list hidden bg-slate-500 opacity-95 w-screen h-screen fixed top-0 left-0 right-0 bottom-0 z-50 p-5">
+  <div class="flex justify-end">
+    <button class="btn-close-add-list text-white text-4xl mr-10">x</button>
+  </div>
+  <div class="flex items-center justify-center h-full">
+    <form action="/list/create" method="post" class="bg-white rounded-2xl h-50 w-5/6 md:w-2/4 p-5 md:px-28 md:py-10">
+      <h1 for="task" class="text-center my-5 text-2xl font-bold uppercase">Danh sách mới</h1>
+      <ul class="flag flex justify-between p-5">
+        <li>
+          <input type="radio" name="flag" value="0" required id="flag1" />
+          <label for="flag1">
+            <i class="bx bxs-flag-alt text-green-600 text-3xl"></i>
+          </label>
+        </li>
+        <li>
+          <input type="radio" name="flag" value="1" required id="flag2" />
+          <label for="flag2">
+            <i class="bx bxs-flag-alt text-yellow-600 text-3xl"></i>
+          </label>
+        </li>
+        <li>
+          <input type="radio" name="flag" value="2" required id="flag3" />
+          <label for="flag3">
+            <i class="bx bxs-flag-alt text-red-600 text-3xl"></i>
+          </label>
+        </li>
+      </ul>
+      <input type="text" id="task" required name="name"
+        class="inline-block w-full py-3 px-3 border-2 rounded-md focus-visible:outline-none focus-visible:border-2 focus-visible:border-red-300" />
+      <div class="btn w-full flex justify-center my-5">
+        <button type="submit" class="text-xl bg-slate-400 hover:bg-slate-500 transition text-white py-3 px-6 rounded">
+          + Thêm
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{{else}}
+
+<div class="app grid grid-cols-1 sm:grid-cols-2">
+  <div class="logo hidden sm:flex flex-col items-start justify-center h-screen pl-5 lg:pl-44">
+    <h1 class="logo text-5xl lg:text-7xl text-blue-700">
+      <span class="font-bold">S.</span>Task
+    </h1>
+    <p class="text-base lg:text-xl">
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi, ea?
+    </p>
+  </div>
+  <div class="form-login flex items-center justify-center h-screen">
+    <form action="/user/login" method="post" class="bg-white p-5 flex flex-col rounded-lg max-w-md sm:shadow-lg">
+      <h1 class="logo text-3xl mt-2 mb-5 hidden sm:flex">Đăng nhập</h1>
+      <h1 class="logo text-3xl text-center text-blue-700 mt-2 mb-5 sm:hidden">
+        <span class="font-bold">S.</span>Task
+      </h1>
+      {{>message}}
+      <div class="form-control mb-5">
+        <label for="username">Tài khoản</label>
+        <input type="text" name="username" class="inline-block w-full p-2 border-2" />
+      </div>
+      <div class="form-control mb-5">
+        <label for="password">Mật khẩu</label>
+        <input type="password" name="password" class="inline-block w-full p-2 border-2" />
+      </div>
+      <button type="submit" class="block p-3 mt-2 transition rounded-lg text-white bg-blue-500 hover:bg-blue-700">
+        Đăng nhập
+      </button>
+      <div class="hr bg-gray-300 w-full my-8" style="height: 1px"></div>
+      <a href="/user/register"
+        class="btn-signup inline-block w-3/5 mx-auto transition rounded-lg p-3 text-white bg-green-600 hover:bg-green-700">
+        Tạo tài khoản mới
+      </a>
+    </form>
+  </div>
+</div>
+
+{{/if}}
+
+
+
+{{!-- <div
+  class="form-register hidden items-center justify-center p-5 top-0 fixed h-screen w-screen left-0 bg-white opacity-95">
+  <form action="/user/register" method="post" id="formRegisterSubmit"
+    class="bg-white p-5 flex flex-col rounded-lg max-w-md shadow-2xl">
+    <div class="header flex items-center justify-between">
+      <h1 class="logo text-3xl mt-2 mb-5">Đăng ký</h1>
+      <i class="btn-close-signup bx bx-x text-3xl cursor-pointer"></i>
+    </div>
+    <div class="form-control mb-5">
+      <label for="username">Tài khoản</label>
+      <input type="text" id="username" name="username" class="inline-block w-full p-2 border-2" />
+    </div>
+    <div class="form-control mb-5">
+      <label for="password">Mật khẩu</label>
+      <input type="password" id="password" name="password" class="inline-block w-full p-2 border-2" />
+    </div>
+    <div class="form-control mb-5">
+      <label for="password2">Xác nhận mật khẩu</label>
+      <input type="password" id="password2" name="password2" class="w-full p-2 border-2" />
+    </div>
+    <button
+      class="btn-submit-register inline-block w-3/5 mx-auto transition rounded-lg p-3 text-white bg-green-600 hover:bg-green-700">
+      Đăng ký
+    </button>
+  </form>
+</div> --}}

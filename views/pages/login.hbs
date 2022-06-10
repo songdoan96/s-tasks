@@ -1,0 +1,27 @@
+<div class="content flex flex-col justify-center items-center h-screen">
+  <div class="form h-full mt-16">
+    <h1 class="text-center py-5 text-3xl uppercase">Đăng nhập</h1>
+    <form
+      action="/user/login"
+      method="post"
+      class="bg-white py-10 px-5 flex flex-col border-2 rounded"
+    >
+      {{>message}}
+
+      <div class="form-control mb-5">
+        <label for="username">Tài khoản</label>
+        <input type="text" name="username" class="inline-block w-full p-2 border-2" />
+      </div>
+      <div class="form-control mb-5">
+        <label for="password">Mật khẩu</label>
+        <input type="password" name="password" class="inline-block w-full p-2 border-2" />
+      </div>
+      <button
+        type="submit"
+        class="inline-block p-3 w-2/5 mx-auto outline outline-1 mt-5 hover:outline-none hover:bg-teal-700 hover:text-white transition"
+      >
+        Đăng nhập
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+{{#if toast_content}}
+  <div
+    class="toast fixed transition animate-bounce right-2 top-28 p-3 rounded w-64 text-white flex items-center justify-between toast-{{toast_type}}"
+  >
+    <div class="flex items-center">
+      <i class="bx bx-bell mr-2"></i>
+      <p class="text-xs">{{toast_content}}</p>
+    </div>
+    <p class="btn-clear-toast cursor-pointer">
+      <i class="bx bx-x"></i>
+    </p>
+  </div>
+{{/if}}

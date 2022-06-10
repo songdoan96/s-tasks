@@ -1,0 +1,8 @@
+{{#if errors}}
+  {{#each errors}}
+    <div class="bg-orange-400 p-2 my-1 text-white alert">
+      {{this.msg}}
+      <p class="btn-clear-alert float-right pr-2 cursor-pointer"><i class="bx bx-x"></i></p>
+    </div>
+  {{/each}}
+{{/if}}

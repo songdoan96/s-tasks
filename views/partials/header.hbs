@@ -1,0 +1,29 @@
+<div class="menu shadow">
+  <div class="container mx-auto flex p-4">
+    <a class="logo text-2xl text-blue-700" href="/"><img src="/images/logo.svg" alt="" /></a>
+    <ul class="ml-auto flex gap-5">
+      {{#if userName}}
+        <div class="flex flex items-center uppercase">
+          <i class="bx bx-user text-2xl"></i>
+          <p class="underline underline-offset-2 ml-2">{{userName}}</p>
+        </div>
+
+        <a
+          id="btn-logout"
+          class="flex items-center cursor-pointer uppercase hover:text-gray-400 hover:transition-opacity"
+          href="#"
+        >Đăng xuất</a>
+      {{else}}
+        <a
+          class="flex items-center cursor-pointer uppercase hover:text-gray-400 hover:transition-opacity"
+          href="/user/login"
+        >Đăng nhập</a>
+        <a
+          class="flex items-center cursor-pointer uppercase hover:text-gray-400 hover:transition-opacity"
+          href="/user/register"
+        >Đăng ký</a>
+      {{/if}}
+
+    </ul>
+  </div>
+</div>

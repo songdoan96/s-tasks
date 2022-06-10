@@ -1,0 +1,226 @@
+<div class="content container mx-auto px-3">
+  <div class="list">
+    <div
+      class="list-header flex items-center justify-center text-center w-full md:w-1/2 mx-auto py-5"
+    >
+      <i class="bx bxs-flag-alt text-{{getFlag list.flag}}-600 text-2xl"></i>
+      <span class="uppercase ml-2 text-gray-500 font-medium">{{list.name}}</span>
+      <div class="action ml-auto text-2xl flex items-center gap-3">
+
+        <button
+          class="btn-edit-list tooltip"
+          data-tippy-content="Sửa danh sách"
+          data-tippy-placement="bottom"
+        >
+          <i class="bx bxs-edit"></i>
+        </button>
+        <button
+          data-tippy-content="Xóa danh sách"
+          data-tippy-placement="bottom"
+          class="tooltip"
+          onclick="if(confirm('Bạn có chắc muốn xóa?')) document.querySelector('#form-list-delete').submit() "
+        >
+          <i class="bx bx-trash-alt"></i>
+        </button>
+        <form action="/list/delete/{{list._id}}" id="form-list-delete" method="post"></form>
+      </div>
+    </div>
+    <div class="list-wrap grid grid-cols-1 md:grid-cols-2 gap-4">
+
+      <div class="task bg-white p-2 md:p-4 shadow">
+
+        <h1 class="border-b-2 py-2 font-semibold">Cần thực hiện</h1>
+        {{#if tasksInComplete}}
+          <ul class="list text-sm py-2">
+            {{#each tasksInComplete}}
+              <li class="flex gap-2 py-2">
+                <button
+                  data-tippy-content="Hoàn thành"
+                  data-tippy-placement="bottom"
+                  class="tooltip"
+                  onclick="document.querySelector('#task-done-{{@index}}').submit()"
+                >
+                  <i class="bx bx-circle text-xl"></i>
+                </button>
+                <form
+                  id="task-done-{{@index}}"
+                  action="/task/done/{{this._id}}"
+                  method="post"
+                ></form>
+                <a
+                  href="/task/{{this._id}}"
+                  class="tooltip task flex flex-col gap-1"
+                  data-tippy-content="Thêm ghi chú"
+                  data-tippy-placement="right"
+                >
+                  <h6 class="text-lg">{{this.name}}</h6>
+                  {{#if this.note}}
+                    <div class="note flex gap-2 text-gray-500">
+                      <i class="bx bx-notepad"></i>
+                      <p>{{this.note}}</p>
+                    </div>
+                  {{/if}}
+                </a>
+              </li>
+            {{/each}}
+
+          </ul>
+        {{else}}
+          <h1 class="mt-2">Bạn chưa thêm công việc nào</h1>
+        {{/if}}
+      </div>
+
+      <div class="completed bg-white p-2 md:p-4 shadow">
+        <h1 class="border-b-2 py-2 font-semibold">Đã hoàn thành</h1>
+        <ul class="list text-sm py-2">
+          {{#each tasksComplete}}
+            <li class="flex gap-2 py-2">
+              <i class="bx bx-check pr-2 text-xl"></i>
+              <div class="task flex flex-col gap-1">
+                <h6 class="text-lg line-through">{{this.name}}</h6>
+                {{#if this.note}}
+                  <div class="note flex gap-2 text-gray-500">
+                    <i class="bx bx-notepad"></i>
+                    <p>{{this.note}}</p>
+                  </div>
+                {{/if}}
+              </div>
+              <div class="action ml-auto flex items-center gap-2 text-xl">
+                <button
+                  data-tippy-content="Hoàn tác"
+                  data-tippy-placement="bottom"
+                  class="tooltip"
+                  onclick="document.querySelector('#form-task-redo-{{@index}}').submit()"
+                >
+                  <i class="bx bx-redo text-blue-700 text-4xl"></i>
+                </button>
+                <form
+                  id="form-task-redo-{{@index}}"
+                  action="/task/redo/{{this._id}}"
+                  method="post"
+                ></form>
+
+                <button
+                  data-tippy-content="Xóa"
+                  data-tippy-placement="bottom"
+                  class="tooltip"
+                  onclick="if(confirm('Bạn có chắc muốn xóa?')) document.querySelector('#form-task-delete-{{@index}}').submit() "
+                >
+                  <i class="bx bx-trash text-red-600 text-3xl"></i>
+                </button>
+                <form
+                  class="hidden"
+                  id="form-task-delete-{{@index}}"
+                  action="/task/delete/{{this._id}}"
+                  method="post"
+                ></form>
+              </div>
+            </li>
+          {{/each}}
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{{! <button
+  id="btn-add-task"
+  class="fixed bottom-0 right-5 md:right-12 z-30 text-7xl md:text-8xl lg:text-9xl text-orange-500"
+>
+  +
+</button> }}
+<button
+  id="btn-add-task"
+  data-tippy-content="Thêm công việc"
+  class="tooltip fixed bottom-5 right-5 z-30 text-orange-500"
+>
+  <img class="w-16 h-16" src="/images/btn-add.svg" alt="" />
+</button>
+
+<div
+  class="modal-add-task hidden bg-slate-500 opacity-95 w-screen h-screen fixed top-0 left-0 right-0 bottom-0 z-50 p-5"
+>
+  <div class="flex justify-end">
+    <button class="btn-close-add-task text-white text-4xl mr-10">x</button>
+  </div>
+  <div class="flex items-center justify-center h-full">
+    <form
+      action="/task/create"
+      method="post"
+      class="bg-white rounded-2xl h-50 w-5/6 md:w-2/4 p-5 md:px-28 md:py-10"
+    >
+      <input type="hidden" name="list_id" value="{{list._id}}" />
+      <h1 for="task" class="text-center my-5 text-2xl font-bold uppercase">Thêm công việc</h1>
+      <input
+        type="text"
+        id="task"
+        name="name"
+        required
+        class="inline-block w-full py-3 px-3 border-2 rounded-md focus-visible:outline-none focus-visible:border-2 focus-visible:border-red-300"
+      />
+      <div class="btn w-full flex justify-center my-5">
+        <button
+          type="submit"
+          class="text-xl bg-slate-400 hover:bg-slate-500 transition text-white py-3 px-6 rounded"
+        >
+          + Thêm
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{{! Modal edit list }}
+<div
+  class="modal-edit-list hidden transition bg-slate-500 opacity-95 w-screen h-screen fixed top-0 left-0 right-0 bottom-0 z-50 p-5"
+>
+  <div class="flex justify-end">
+    <button class="btn-close-modal-edit-list text-white text-4xl mr-10">x</button>
+  </div>
+  <div class="flex items-center justify-center h-full">
+    <form
+      action="/list/edit/{{list._id}}"
+      method="post"
+      class="bg-white rounded-2xl h-50 w-5/6 md:w-2/4 p-5 md:px-28 md:py-10"
+    >
+      <h1 for="task" class="text-center my-5 text-2xl font-bold uppercase">Chỉnh sửa</h1>
+      <ul class="flag flex justify-between p-5">
+        <li>
+          <input type="radio" checked name="flag" value="0" required id="flag1" />
+          <label for="flag1">
+            <i class="bx bxs-flag-alt text-green-600 text-3xl"></i>
+          </label>
+        </li>
+        <li>
+          <input type="radio" name="flag" value="1" required id="flag2" />
+          <label for="flag2">
+            <i class="bx bxs-flag-alt text-yellow-600 text-3xl"></i>
+          </label>
+        </li>
+        <li>
+          <input type="radio" name="flag" value="2" required id="flag3" />
+          <label for="flag3">
+            <i class="bx bxs-flag-alt text-red-600 text-3xl"></i>
+          </label>
+        </li>
+      </ul>
+      <input
+        type="text"
+        id="task"
+        required
+        name="name"
+        value="{{list.name}}"
+        class="inline-block w-full py-3 px-3 border-2 rounded-md focus-visible:outline-none focus-visible:border-2 focus-visible:border-red-300"
+      />
+      <div class="btn w-full flex justify-center my-5">
+        <button
+          type="submit"
+          class="text-xl bg-slate-400 hover:bg-slate-500 transition text-white py-3 px-6 rounded"
+        >
+          + Cập nhật
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
