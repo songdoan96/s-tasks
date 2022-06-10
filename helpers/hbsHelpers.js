@@ -10,4 +10,4 @@ const getFlag = (flag) => {
   }
 };
 
-module.exports = { sum, getFlag };
+module.exports = { getFlag };
