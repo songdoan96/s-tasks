@@ -30,6 +30,7 @@ module.exports = {
   delete: async (req, res, next) => {
     try {
       await List.deleteOne({ _id: req.params.id });
+      await Task.deleteMany({ list_id: req.params.id });
       req.flash("toast-type", "success");
       req.flash("toast-content", "Xóa thành công.");
       res.redirect("/");
