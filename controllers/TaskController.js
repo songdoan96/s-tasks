@@ -1,6 +1,5 @@
 const Task = require("../models/Task");
 const List = require("../models/List");
-
 module.exports = {
   show: async (req, res, next) => {
     const task = await Task.findById(req.params.id).lean();
@@ -35,7 +34,7 @@ module.exports = {
   },
   update: async (req, res, next) => {
     try {
-      const task = await Task.findByIdAndUpdate({ _id: req.params.id }, req.body).lean();
+      const task = await Task.findOneAndUpdate({ _id: req.params.id }, req.body).lean();
       req.flash("toast-type", "success");
       req.flash("toast-content", "Cập nhật thành công.");
       res.redirect(`/list/${task.list_id}`);
@@ -47,7 +46,7 @@ module.exports = {
   },
   done: async (req, res, next) => {
     try {
-      await Task.findByIdAndUpdate({ _id: req.params.id }, { status: 1 });
+      await Task.updateOne({ _id: req.params.id }, { status: 1 });
       req.flash("toast-type", "success");
       req.flash("toast-content", "Cập nhật thành công.");
       res.redirect(`back`);
@@ -59,7 +58,7 @@ module.exports = {
   },
   redo: async (req, res, next) => {
     try {
-      await Task.findByIdAndUpdate({ _id: req.params.id }, { status: 0 });
+      await Task.findOneAndUpdate({ _id: req.params.id }, { status: 0 });
       req.flash("toast-type", "success");
       req.flash("toast-content", "Cập nhật thành công.");
       res.redirect(`back`);

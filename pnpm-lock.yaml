@@ -8,6 +8,8 @@ specifiers:
   express: ^4.18.1
   express-handlebars: ^6.0.6
   express-session: ^1.17.3
+  moment: ^2.29.3
+  mongodb: ^4.1.0
   mongoose: ^6.3.6
   morgan: ^1.10.0
   nodemon: ^2.0.16
@@ -17,11 +19,13 @@ specifiers:
 dependencies:
   bcrypt: 5.0.1
   connect-flash: 0.1.1
-  connect-mongo: 4.6.0
+  connect-mongo: 4.6.0_mongodb@4.5.0
   dotenv: 16.0.1
   express: 4.18.1
   express-handlebars: 6.0.6
   express-session: 1.17.3
+  moment: 2.29.3
+  mongodb: 4.5.0
   mongoose: 6.3.6
   passport: 0.6.0
   passport-local: 1.0.0
@@ -369,7 +373,7 @@ packages:
     engines: {node: '>= 0.4.0'}
     dev: false
 
-  /connect-mongo/4.6.0:
+  /connect-mongo/4.6.0_mongodb@4.5.0:
     resolution: {integrity: sha512-8new4Z7NLP3CGP65Aw6ls3xDBeKVvHRSh39CXuDZTQsvpeeU9oNMzfFgvqmHqZ6gWpxIl663RyoVEmCAGf1yOg==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -377,6 +381,7 @@ packages:
     dependencies:
       debug: 4.3.4
       kruptein: 3.0.4
+      mongodb: 4.5.0
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -1071,6 +1076,10 @@ packages:
     hasBin: true
     dev: false
 
+  /moment/2.29.3:
+    resolution: {integrity: sha512-c6YRvhEo//6T2Jz/vVtYzqBzwvPT95JBQ+smCytzf7c50oMZRsR/a4w88aD34I+/QVSfnoAnSBFPJHItlOMJVw==}
+    dev: false
+
   /mongodb-connection-string-url/2.5.2:
     resolution: {integrity: sha512-tWDyIG8cQlI5k3skB6ywaEA5F9f5OntrKKsT/Lteub2zgwSUlhqEN2inGgBTm8bpYJf8QYBdA/5naz65XDpczA==}
     dependencies:
@@ -1545,7 +1554,7 @@ packages:
     dev: false
 
   /sparse-bitfield/3.0.3:
-    resolution: {integrity: sha1-/0rm5oZWBWuks+eSqzM004JzyhE=}
+    resolution: {integrity: sha512-kvzhi7vqKTfkh0PZU+2D2PIllw2ymqJKujUcyPMd9Y75Nv4nPbGJZXNhxsgdQab2BmlDct1YnfQCguEvHr7VsQ==}
     dependencies:
       memory-pager: 1.5.0
     dev: false

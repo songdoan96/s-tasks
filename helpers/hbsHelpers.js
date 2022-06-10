@@ -1,3 +1,4 @@
+const moment = require("moment");
 const getFlag = (flag) => {
   if (flag === 0) {
     return "green";
@@ -9,5 +10,8 @@ const getFlag = (flag) => {
     return "red";
   }
 };
+function utcToLocal(time, format) {
+  return moment.utc(time).local().format(format);
+}
 
-module.exports = { getFlag };
+module.exports = { getFlag, utcToLocal };
