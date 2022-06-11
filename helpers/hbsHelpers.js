@@ -1,5 +1,5 @@
 const moment = require("moment");
-const vnTimeZone = require("moment-timezone");
+const tz = require("moment-timezone");
 const getFlag = (flag) => {
   if (flag === 0) {
     return "green";
@@ -12,7 +12,7 @@ const getFlag = (flag) => {
   }
 };
 function utcToLocal(time, format) {
-  return moment(time).vnTimeZone("Asia/Ho_Chi_Minh").format(format);
+  return moment(time).tz("Asia/Ho_Chi_Minh").format(format);
 }
 
 module.exports = { getFlag, utcToLocal };
