@@ -9,6 +9,7 @@ specifiers:
   express-handlebars: ^6.0.6
   express-session: ^1.17.3
   moment: ^2.29.3
+  moment-timezone: ^0.5.34
   mongodb: ^4.1.0
   mongoose: ^6.3.6
   morgan: ^1.10.0
@@ -25,6 +26,7 @@ dependencies:
   express-handlebars: 6.0.6
   express-session: 1.17.3
   moment: 2.29.3
+  moment-timezone: 0.5.34
   mongodb: 4.5.0
   mongoose: 6.3.6
   passport: 0.6.0
@@ -1074,6 +1076,12 @@ packages:
     resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
     engines: {node: '>=10'}
     hasBin: true
+    dev: false
+
+  /moment-timezone/0.5.34:
+    resolution: {integrity: sha512-3zAEHh2hKUs3EXLESx/wsgw6IQdusOT8Bxm3D9UrHPQR7zlMmzwybC8zHEM1tQ4LJwP7fcxrWr8tuBg05fFCbg==}
+    dependencies:
+      moment: 2.29.3
     dev: false
 
   /moment/2.29.3:
