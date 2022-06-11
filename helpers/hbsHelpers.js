@@ -12,7 +12,7 @@ const getFlag = (flag) => {
   }
 };
 function utcToLocal(time, format) {
-  return moment(time).tz("Asia", "Ho_Chi_Minh").format(format);
+  return moment(time).locale("vi").local(true).format(format);
 }
 
 module.exports = { getFlag, utcToLocal };
