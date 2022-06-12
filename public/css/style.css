@@ -661,6 +661,10 @@ html {
   margin-right: 0.5rem;
 }
 
+.ml-0 {
+  margin-left: 0px;
+}
+
 .block {
   display: block;
 }
@@ -1332,6 +1336,14 @@ html {
     margin-bottom: 0px;
   }
 
+  .md\:ml-2 {
+    margin-left: 0.5rem;
+  }
+
+  .md\:inline {
+    display: inline;
+  }
+
   .md\:w-2\/4 {
     width: 50%;
   }
@@ -1356,6 +1368,10 @@ html {
     gap: 1rem;
   }
 
+  .md\:gap-5 {
+    gap: 1.25rem;
+  }
+
   .md\:p-4 {
     padding: 1rem;
   }
@@ -1377,6 +1393,14 @@ html {
 }
 
 @media (min-width: 1024px) {
+  .lg\:mr-2 {
+    margin-right: 0.5rem;
+  }
+
+  .lg\:inline {
+    display: inline;
+  }
+
   .lg\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }

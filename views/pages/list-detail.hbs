@@ -18,7 +18,7 @@
           data-tippy-content="Xóa danh sách"
           data-tippy-placement="bottom"
           class="tooltip"
-          onclick="if(confirm('Bạn có chắc muốn xóa?')) document.querySelector('#form-list-delete').submit() "
+          onclick="if(confirm('Xóa {{list.name}} ?')) document.querySelector('#form-list-delete').submit() "
         >
           <i class="bx bx-trash-alt"></i>
         </button>
@@ -77,9 +77,10 @@
             <li class="flex gap-2 py-2">
               <i class="bx bx-check pr-2 text-xl"></i>
               <div class="task flex flex-col gap-1">
-                <h6><span class="text-lg line-through">{{this.name}}</span><span
-                    class="ml-2"
-                  >({{utcToLocal this.updatedAt "HH:mm L"}})</span></h6>
+                <div>
+                  <p class="text-lg line-through lg:inline lg:mr-2">{{this.name}}</p>
+                  <span class="">({{utcToLocal this.updatedAt "HH:mm L"}})</span>
+                </div>
 
                 {{#if this.note}}
                   <div class="note flex gap-2 text-gray-500">
@@ -107,7 +108,7 @@
                   data-tippy-content="Xóa"
                   data-tippy-placement="bottom"
                   class="tooltip"
-                  onclick="if(confirm('Bạn có chắc muốn xóa?')) document.querySelector('#form-task-delete-{{@index}}').submit() "
+                  onclick="if(confirm('Xóa {{this.name}} ?')) document.querySelector('#form-task-delete-{{@index}}').submit() "
                 >
                   <i class="bx bx-trash text-red-600 text-3xl"></i>
                 </button>
