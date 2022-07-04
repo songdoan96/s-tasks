@@ -13,6 +13,7 @@ const hbsHelpers = require("./helpers/hbsHelpers");
 require("./helpers/passportLocalStrategy");
 const app = express();
 const { PORT, NODE_ENV, SESSION_SECRET, MONGO_URI, SESSION_TTL } = process.env;
+const APP_PORT = process.env.PORT || PORT;
 
 // Connect DB
 connectDB();
@@ -78,4 +79,4 @@ app.use((req, res) => {
   }
 });
 
-app.listen(PORT, console.log(`Server running ${NODE_ENV} at http://localhost:${PORT} `));
+app.listen(APP_PORT, console.log(`Server running ${NODE_ENV} at http://localhost:${APP_PORT} `));
