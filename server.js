@@ -39,7 +39,7 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 // Logging
-if (NODE_ENV === "development") {
+if (process.env.NODE_ENV !== "production" || NODE_ENV !== "production") {
   app.use(morgan("dev"));
 }
 
