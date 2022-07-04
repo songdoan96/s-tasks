@@ -1,7 +1,6 @@
 require("dotenv").config();
 const path = require("path");
 const express = require("express");
-const morgan = require("morgan");
 const session = require("express-session");
 const passport = require("passport");
 const flash = require("connect-flash");
@@ -40,6 +39,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 // Logging
 if (process.env.NODE_ENV !== "production" || NODE_ENV !== "production") {
+  const morgan = require("morgan");
   app.use(morgan("dev"));
 }
 
